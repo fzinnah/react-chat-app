@@ -1,14 +1,19 @@
-const {Pool} = require('pg')
+const {Sequelize} = require('sequelize')
+const dotenv = require('dotenv').config()
 
-const pool = new Pool({
-    user: 'forhad',
-    host: 'localhost',
-    database: 'react-chat-app',
-    password: "",
-    port: 5432,
+const database = process.env.DATABASE_URL
+
+const db = new Sequelize(database, {
+    logging:false
 })
 
-pool.connect((err)=>{
-    if (err) throw new Error(err)
-    console.log("Connected to the database")
-})
+const main = async()=> {
+    try {
+        await db.authenticate()
+        console.log('Connection has been established successfully')
+    } catch (error) {
+        console.log('Unable to connect to the database', error)
+    }
+}
+
+main()
