@@ -6,9 +6,9 @@ const socket = io("http://localhost:3001")
 const Chat = () => {
     const [messages, setMessages] = useState([])
     const [newMessage, setNewMessage] = useState('')
-    console.log(messages)
-    useEffect(()=>{
 
+
+    useEffect(()=>{
         socket.on('new message', (data)=>{
             setMessages(prev=>[...prev, data])
         })
@@ -23,7 +23,7 @@ const Chat = () => {
 
         //emit the new message to the server
         socket.emit('new message', {username:'JohnDoe', message: newMessage})
-        console.log(newMessage)
+        console.log('coming from the frontend', newMessage)
         setNewMessage('')
     }
 

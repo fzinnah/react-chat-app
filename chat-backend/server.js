@@ -49,7 +49,7 @@ io.on('connection', (socket)=>{
     socket.on('new message', (data)=> {
         // here you would ideally save the message to your database first.
         // after that, broadcast it to other users.
-        console.log(data)
+        console.log("recieved on the server", data)
         io.emit('new message', data)
     })
 
