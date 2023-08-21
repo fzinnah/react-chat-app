@@ -22,7 +22,7 @@ router.get('/:chatId', async (req, res, next)=>{
     try {
         const messages = await Message.findAll({
             where: {
-                chat_id: req.params.chatId
+                chat_id: +req.params.chatId
             }
         })
         res.status(200).json(messages)
@@ -32,9 +32,10 @@ router.get('/:chatId', async (req, res, next)=>{
     }
 })
 
+// updates a message
 router.put('/:messageId', async (req, res, next)=>{
     try {
-        const message = await Message.findByPk(req.params.messageId)
+        const message = await Message.findByPk(+req.params.messageId)
         if (!message) {
             return res.status(404).send('Message not found')
         }
@@ -45,3 +46,22 @@ router.put('/:messageId', async (req, res, next)=>{
         next(error)
     }
 })
+
+// deletes a message 
+router.delete('/:messageId', async(req, res, next)=>{
+    try {
+        const result = await Message.destroy({
+            where: {
+                id: req.params.messageId
+            }
+        })
+        if (result === 0) {
+            return res.status(404).send('Message not found')
+        }
+        res.status(204).send()
+    } catch (error) {
+        console.log('backend issue deleting a message')
+        next(error)
+    }
+})
+
