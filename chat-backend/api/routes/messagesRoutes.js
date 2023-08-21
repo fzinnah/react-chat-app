@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Message} = require('../../db/index')
+const { Message } = require('../../db/index')
 
 // create a new message 
 router.post('/', async (req, res, next) =>{
