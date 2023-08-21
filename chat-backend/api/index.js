@@ -5,9 +5,9 @@ const cors = require('cors')
 router.use(cors())
 
 // routes to specific pages
-router.use('/users', require('./routes/usersRoutes'))
-router.use('/chats', require('./routes/chatsRoutes'))
 router.use('/messages', require('./routes/messagesRoutes'))
+//router.use('/users', require('./routes/usersRoutes'))
+//router.use('/chats', require('./routes/chatsRoutes'))
 
 // 404 default error handler
 router.use((req, res, next)=>{
