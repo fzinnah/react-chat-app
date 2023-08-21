@@ -65,3 +65,20 @@ router.delete('/:messageId', async(req, res, next)=>{
     }
 })
 
+// get all unread messages for a specific user 
+router.get('/unread/:userId', async (req, res, next)=>{
+    try {
+        const unreadMessages = await Message.findAll({
+            where: {
+                sender_id: req.params.userId,
+                read_status: 'Unread'
+            }
+        })
+        res.json(unreadMessages)
+    } catch (error) {
+        console.log('backend issue fetching all unread messages for user')
+        next(error)
+    }
+})
+
+module.exports = router
