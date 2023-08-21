@@ -32,3 +32,16 @@ router.get('/:chatId', async (req, res, next)=>{
     }
 })
 
+router.put('/:messageId', async (req, res, next)=>{
+    try {
+        const message = await Message.findByPk(req.params.messageId)
+        if (!message) {
+            return res.status(404).send('Message not found')
+        }
+        await message.update(req.body)
+        res.json(message)
+    } catch (error) {
+        console.log('backend issue updating message')
+        next(error)
+    }
+})
