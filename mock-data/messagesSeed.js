@@ -3,7 +3,7 @@ const messages = [
       id: 1,
       chat_id: 1,
       sender_id: 1,
-      content: "Hey, how's the project going?",
+      content: "Hey, hows the project going?",
       read_status: "Unread",
       createdAt: "2023-08-17T09:00:00.000Z",
       updatedAt: "2023-08-17T09:00:10.000Z"
