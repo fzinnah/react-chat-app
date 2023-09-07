@@ -14,7 +14,7 @@ const Chat = () => {
         })
 
         return ()=>{
-            socket.disconnect()
+            socket.off('new message') // remove the event listener when the componenet unmounts
         }
     }, [])
 
