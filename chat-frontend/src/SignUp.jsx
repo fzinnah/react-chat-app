@@ -29,7 +29,7 @@ const SignUp = () => {
         if (response.ok) {
             console.log('Registration Successful');
         } else {
-            console.log('Fegistration Failed')
+            console.log('Registration Failed', response)
         }
     } catch (error) {
         console.error('Error during registration', error)
