@@ -1,6 +1,6 @@
 import './App.css'
-import Chat from './Chat'
-import Login from './Login'
+// import Chat from './Chat'
+// import Login from './Login'
 import SignUp from './SignUp'
 
 function App() {
@@ -8,9 +8,9 @@ function App() {
 
   return (
     <>
-    <Chat/>
+    {/* <Chat/> */}
     <SignUp/>
-    <Login/>
+    {/* <Login/> */}
     </>
   )
 }

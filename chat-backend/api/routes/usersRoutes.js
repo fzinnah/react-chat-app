@@ -18,7 +18,7 @@ router.post('/register', async (req, res, next) => {
         const token = jwt.sign({userId: newUser.id}, 'my-secret-key', {
             expiresIn: '1h',
         })
-        res.status(201).json({message: "User registered successfully"})
+        res.status(201).json({message: "User registered successfully", token: token})
     } catch (error) {
         console.log('backend issue creating new user')
         next(error)
@@ -43,7 +43,7 @@ router.post('/login', async (req, res, next)=>{
         const token = jwt.sign({userId: user.id}, 'my-secret-key', {
             expiresIn: '1h'
         })
-        res.status(200).json({message: "Authentication success!"})
+        res.status(200).json({message: "Authentication success!", token: token})
     } catch (error) {
         console.error('Backend issue with login', error)
         next(error)

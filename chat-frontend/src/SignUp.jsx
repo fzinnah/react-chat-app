@@ -1,4 +1,5 @@
 import { useState } from "react"
+import "./SignUp.css"
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -37,8 +38,7 @@ const SignUp = () => {
   }
   
     return (
-    <div>
-        <h2>Sign Up</h2>
+    <div className="signUpScreen">
         <form onSubmit={handleSubmit}>
             <div>
                 <label htmlFor="username">Username:</label>
