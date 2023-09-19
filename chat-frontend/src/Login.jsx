@@ -1,8 +1,9 @@
 import  { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Login.css'
 
 const Login = () => {
+  const navigate = useNavigate()
   const [formData, setFormData] = useState({
     username: '',
     password: '',
@@ -35,6 +36,7 @@ const Login = () => {
         // Handle login error, such as displaying an error message
         console.error('Login failed');
       }
+      navigate('/chat')
     } catch (error) {
       console.error('Error during login', error);
     }
