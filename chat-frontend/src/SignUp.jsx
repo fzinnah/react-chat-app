@@ -1,5 +1,6 @@
 import { useState } from "react"
 import "./SignUp.css"
+import { Link } from "react-router-dom";
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -38,23 +39,52 @@ const SignUp = () => {
   }
   
     return (
-    <div className="signUpScreen">
-        <form onSubmit={handleSubmit}>
-            <div>
-                <label htmlFor="username">Username:</label>
-                <input type="text" name="username" id="username" value={formData.username} onChange={handleChange} required/>
-            </div>
-            <div>
-                <label htmlFor="password">Password:</label>
-                <input type="text" name="password" id="password" value={formData.password} onChange={handleChange} required/>
-            </div>
-            <div>
-                <label htmlFor="email">email:</label>
-                <input type="text" name="email" id="email" value={formData.email} onChange={handleChange} required/>
-            </div>
-            <button type="submit">Submit</button>
-        </form>
+<div className="signUpScreen">
+  <form onSubmit={handleSubmit} className="signup-form">
+    <h1>Sign Up</h1>
+    <div>
+      <label htmlFor="username">Username:</label>
+      <input
+        type="text"
+        name="username"
+        id="username"
+        value={formData.username}
+        onChange={handleChange}
+        required
+        className="input-field"
+      />
     </div>
+    <div>
+      <label htmlFor="password">Password:</label>
+      <input
+        type="text"
+        name="password"
+        id="password"
+        value={formData.password}
+        onChange={handleChange}
+        required
+        className="input-field"
+      />
+    </div>
+    <div>
+      <label htmlFor="email">Email:</label>
+      <input
+        type="text"
+        name="email"
+        id="email"
+        value={formData.email}
+        onChange={handleChange}
+        required
+        className="input-field"
+      />
+    </div>
+    <button type="submit" className="submit-button">
+      Sign Up
+    </button>
+    <Link to='/login'>Already have an account?</Link>
+    
+  </form>
+</div>
   )
 }
 
