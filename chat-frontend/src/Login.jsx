@@ -41,9 +41,9 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
+    <div className='loginScreen'>
       <form onSubmit={handleSubmit}>
+      <h2>Login</h2>
         <div>
           <label htmlFor="username">Username:</label>
           <input
