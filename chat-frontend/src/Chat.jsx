@@ -23,7 +23,6 @@ const Chat = () => {
 
         //emit the new message to the server
         socket.emit('new message', {username:'JohnDoe', message: newMessage})
-        console.log('coming from the frontend', newMessage)
         setNewMessage('')
     }
 

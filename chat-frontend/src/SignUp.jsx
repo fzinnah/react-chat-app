@@ -28,6 +28,8 @@ const SignUp = () => {
             },
             body: JSON.stringify(formData)
         })
+
+        // set localStorage with token here
         if (response.ok) {
             console.log('Registration Successful');
         } else {

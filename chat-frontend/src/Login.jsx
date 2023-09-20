@@ -32,11 +32,11 @@ const Login = () => {
       if (response.ok) {
         // Login successful, you can redirect the user or show a success message
         console.log('Login successful');
+        navigate('/chat')
       } else {
         // Handle login error, such as displaying an error message
         console.error('Login failed');
       }
-      navigate('/chat')
     } catch (error) {
       console.error('Error during login', error);
     }
