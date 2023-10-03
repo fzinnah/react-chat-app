@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import io from 'socket.io-client'
+import './Chat.css'
 
 const socket = io("http://localhost:3001")
 
@@ -27,23 +28,48 @@ const Chat = () => {
     }
 
   return (
-    <div>
-        <ul>
-            {messages.map((msg, idx)=>(
-                <li key={idx}>{msg.username}: {msg.message}</li>
-            ))}
-        </ul>
 
-        <form onSubmit={handleSubmit}>
-            <input 
-            type="text"
-            value={newMessage}
-            onChange={(e)=>setNewMessage(e.target.value)} 
-            placeholder="Type a message"
-            />
-            <button type="submit">Send</button>
-        </form>
+    <div className="chat-container">
+      <ul className="message-list">
+        {messages.map((msg, idx) => (
+          <li key={idx} className="message">
+            <span className="username">{msg.username}</span>:{" "}
+            <span className="message-text">{msg.message}</span>
+          </li>
+        ))}
+      </ul>
+      <form className="message-form" onSubmit={handleSubmit}>
+        <input
+          className="message-input"
+          type="text"
+          value={newMessage}
+          onChange={(e) => setNewMessage(e.target.value)}
+          placeholder="Type a message"
+        />
+        <button className="send-button" type="submit">
+          Send
+        </button>
+      </form>
     </div>
+
+
+    // <div>
+    //     <ul>
+    //         {messages.map((msg, idx)=>(
+    //             <li key={idx}>{msg.username}: {msg.message}</li>
+    //         ))}
+    //     </ul>
+
+    //     <form onSubmit={handleSubmit}>
+    //         <input 
+    //         type="text"
+    //         value={newMessage}
+    //         onChange={(e)=>setNewMessage(e.target.value)} 
+    //         placeholder="Type a message"
+    //         />
+    //         <button type="submit">Send</button>
+    //     </form>
+    // </div>
   )
 }
 
