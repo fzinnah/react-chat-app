@@ -1,7 +1,7 @@
 body {
   font-family: 'Courier New', Courier, monospace;
-  margin: 0 ;
-  padding: 0; 
+  margin: 0;
+  padding: 0;
 }
 
 form {
@@ -32,7 +32,7 @@ input {
   margin-bottom: 10px;
 }
 
-button[type="submit"] {
+button[type='submit'] {
   background-color: #007bff; /* Button background color */
   color: #fff; /* Button text color */
   border: none;
@@ -43,6 +43,6 @@ button[type="submit"] {
   transition: background-color 0.3s ease; /* Smooth transition for button color */
 }
 
-button[type="submit"]:hover {
+button[type='submit']:hover {
   background-color: #0056b3; /* Button color on hover */
 }

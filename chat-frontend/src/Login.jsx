@@ -1,9 +1,9 @@
-import  { useState } from 'react';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import './Login.css'
+import './Login.css';
 
 const Login = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: '',
     password: '',
@@ -32,7 +32,7 @@ const Login = () => {
       if (response.ok) {
         // Login successful, you can redirect the user or show a success message
         console.log('Login successful');
-        navigate('/chat')
+        navigate('/chat');
       } else {
         // Handle login error, such as displaying an error message
         console.error('Login failed');
@@ -43,9 +43,9 @@ const Login = () => {
   };
 
   return (
-    <div className='loginScreen'>
+    <div className="loginScreen">
       <form onSubmit={handleSubmit}>
-      <h2>Login</h2>
+        <h2>Login</h2>
         <div>
           <label htmlFor="username">Username:</label>
           <input
@@ -69,7 +69,7 @@ const Login = () => {
           />
         </div>
         <button type="submit">Login</button>
-        <Link to='/'>Home</Link>
+        <Link to="/">Home</Link>
       </form>
     </div>
   );
