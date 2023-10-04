@@ -9,15 +9,21 @@ const syncDatabase = async () => {
     console.log('syncing the db');
 
     console.log('seeding users...');
-    const seedUsers = await User.bulkCreate(users);
+    const seedUsers = await User.bulkCreate(users, {
+      individualHooks: true,
+    });
     console.log('seeded users! yay!');
 
     console.log('seeding chats...');
-    const seedChats = await Chat.bulkCreate(chats);
+    const seedChats = await Chat.bulkCreate(chats, {
+      validate: true,
+    });
     console.log('seeded chats! yay!');
 
     console.log('seeding messages...');
-    const seedMessages = await Message.bulkCreate(messages);
+    const seedMessages = await Message.bulkCreate(messages, {
+      validate: true,
+    });
     console.log('seeded messages! yay!');
 
     db.close();

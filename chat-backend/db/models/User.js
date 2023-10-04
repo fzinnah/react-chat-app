@@ -1,10 +1,11 @@
-const { DataTypes } = require('sequelize');
+const Sequelize = require('sequelize');
 const db = require('../database');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv').config();
 
 const SECRET = process.env.JWT;
+const SALT_ROUNDS = 10;
 
 const User = db.define(
   'User',
