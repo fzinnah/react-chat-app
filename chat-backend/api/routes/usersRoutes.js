@@ -5,18 +5,23 @@ const { User } = require('../../db');
 router.post('/register', async (req, res, next) => {
   try {
     const { userName, password, email } = req.body;
-
     const [newUser, wasCreated] = await User.findOrCreate({
       where: { email: req.body.email },
+      defaults: {
+        userName,
+        password,
+        email,
+      },
+      attributes: { exclude: ['password'] },
     });
-    console.log('got thru findorcreate');
+
     if (!wasCreated) return res.status(409).send('User already exists');
 
     res.status(201).send({
       token: await User.authenticate({ email, password }),
     });
   } catch (error) {
-    console.error('backend issue registering user');
+    console.error('backend issue registering user', error);
   }
 });
 

@@ -74,7 +74,7 @@ User.authenticate = async ({ email, password }) => {
         },
         SECRET
       );
-      console.log(token);
+
       return token;
     }
     const error = new Error('bad credentials');
