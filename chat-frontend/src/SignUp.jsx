@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
-    username: '',
+    userName: '',
     password: '',
     email: '',
   });
@@ -31,7 +31,7 @@ const SignUp = () => {
 
       // set localStorage with token here
       if (response.ok) {
-        console.log('Registration Successful');
+        console.log('Registration Successful', response);
       } else {
         console.log('Registration Failed', response);
       }
@@ -48,9 +48,9 @@ const SignUp = () => {
           <label htmlFor="username">Username:</label>
           <input
             type="text"
-            name="username"
+            name="userName"
             id="username"
-            value={formData.username}
+            value={formData.userName}
             onChange={handleChange}
             required
             className="input-field"

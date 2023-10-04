@@ -1,3 +1,6 @@
+const router = require('express').Router();
+const { User } = require('../../db');
+
 router.post('/login', async (req, res, next) => {
   try {
     const { username, password } = req.body;
@@ -13,3 +16,5 @@ router.post('/login', async (req, res, next) => {
     console.error('error message:', error);
   }
 });
+
+module.exports = router;
