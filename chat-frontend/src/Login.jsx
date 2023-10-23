@@ -1,13 +1,17 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import './Login.css';
 
 const Login = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: '',
     password: '',
   });
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,13 +25,12 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:3001/api/users/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await dispatch(
+        logIn({
+          email,
+          password,
+        })
+      );
 
       if (response.ok) {
         // Login successful, you can redirect the user or show a success message
@@ -69,7 +72,9 @@ const Login = () => {
           />
         </div>
         <button type="submit">Login</button>
-        <Link to="/">Home</Link>
+        <div>
+          Want to <Link to="/">sign up?</Link>
+        </div>
       </form>
     </div>
   );

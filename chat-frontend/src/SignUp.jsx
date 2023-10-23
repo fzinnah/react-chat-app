@@ -31,7 +31,8 @@ const SignUp = () => {
 
       // set localStorage with token here
       if (response.ok) {
-        console.log('Registration Successful', response);
+        let json = await response.json();
+        console.log('Registration Successful', json);
       } else {
         console.log('Registration Failed', response);
       }
