@@ -10,8 +10,7 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  // const { userAuth, status } = useSelector(selectAuth);
-  // console.log(userAuth);
+  const { userAuth } = useSelector(selectAuth);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,9 +31,9 @@ const Login = () => {
     }
   };
 
-  // useEffect(() => {
-  //   if (userAuth && userAuth.userName) navigate('/chat');
-  // }, [userAuth]);
+  useEffect(() => {
+    if (userAuth && userAuth.userName) navigate('/chat');
+  }, [userAuth]);
 
   return (
     <div className="loginScreen">

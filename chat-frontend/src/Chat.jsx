@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import io from 'socket.io-client';
+import { useSelector } from 'react-redux';
+import { selectAuth } from './slices/authSlice';
 import './Chat.css';
 
 const socket = io('http://localhost:3001');
@@ -7,6 +9,8 @@ const socket = io('http://localhost:3001');
 const Chat = () => {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
+
+  const { userAuth } = useSelector(selectAuth);
 
   useEffect(() => {
     socket.on('new message', (data) => {
@@ -22,7 +26,10 @@ const Chat = () => {
     e.preventDefault();
 
     //emit the new message to the server
-    socket.emit('new message', { username: 'JohnDoe', message: newMessage });
+    socket.emit('new message', {
+      username: userAuth.userName,
+      message: newMessage,
+    });
     setNewMessage('');
   };
 

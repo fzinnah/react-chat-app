@@ -2,7 +2,6 @@ const { User } = require('../db');
 
 const requireToken = async (req, res, next) => {
   try {
-    console.log(req.body);
     const token = req.headers.authorization;
     if (!token) {
       console.log('auth failed');

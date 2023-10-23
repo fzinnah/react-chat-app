@@ -9,9 +9,7 @@ export const logIn = createAsyncThunk(
         'http://localhost:3001/api/auth/login',
         credentials
       );
-      console.log('inside logIn thunk', data);
       localStorage.setItem('token', data.token);
-
       return data;
     } catch (error) {
       return rejectWithValue(error);
@@ -78,8 +76,6 @@ const authSlice = createSlice({
   },
 });
 
-export const selectAuth = (state) => {
-  state.auth;
-};
+export const selectAuth = (state) => state.auth;
 
 export default authSlice.reducer;
