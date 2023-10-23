@@ -1,10 +1,20 @@
 const router = require('express').Router();
 const { User } = require('../../db');
+const { requireToken } = require('../authMiddleware');
+
+router.get('/', requireToken, async (req, res, next) => {
+  try {
+    res.send(req.user);
+  } catch (error) {
+    console.log('backend issue getting user from auth');
+    next(error);
+  }
+});
 
 router.post('/login', async (req, res, next) => {
   try {
-    const { username, password } = req.body;
-    const token = User.authenticate({ username, password });
+    const { email, password } = req.body;
+    const token = await User.authenticate({ email, password });
     if (token) {
       return res.status(200).send({ token });
     } else {

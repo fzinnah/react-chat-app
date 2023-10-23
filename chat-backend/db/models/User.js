@@ -66,16 +66,13 @@ User.authenticate = async ({ email, password }) => {
       where: { email },
     });
     if (user && (await bcrypt.compare(password, user.password))) {
-      const token = jwt.sign(
+      return jwt.sign(
         {
           id: user.id,
           email: user.email,
-          role: user.role,
         },
         SECRET
       );
-
-      return token;
     }
     const error = new Error('bad credentials');
     error.status = 401;

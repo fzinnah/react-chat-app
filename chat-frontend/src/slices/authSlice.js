@@ -6,10 +6,31 @@ export const logIn = createAsyncThunk(
   async (credentials, { rejectWithValue }) => {
     try {
       let { data } = await axios.post(
-        'http://localhost:3001/api/users/login',
+        'http://localhost:3001/api/auth/login',
         credentials
       );
+      console.log('inside logIn thunk', data);
       localStorage.setItem('token', data.token);
+
+      return data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const attemptTokenLogin = createAsyncThunk(
+  'attemptTokenLogin',
+  async (x, { rejectWithValue }) => {
+    try {
+      const token = window.localStorage.getItem('token');
+      if (!token) return {};
+      const { data } = await axios.get('http://localhost:3001/api/auth', {
+        headers: {
+          authorization: token,
+        },
+      });
+      return { data, token };
     } catch (error) {
       return rejectWithValue(error);
     }
@@ -37,6 +58,20 @@ const authSlice = createSlice({
         state.error = '';
       })
       .addCase(logIn.rejected, (state, { payload }) => {
+        state.status = 'failed';
+        state.error = payload.message;
+      })
+      .addCase(attemptTokenLogin.fulfilled, (state, { payload }) => {
+        state.userAuth = payload.data;
+        state.status = 'success';
+        state.error = '';
+        state.token = payload.token;
+      })
+      .addCase(attemptTokenLogin.pending, (state) => {
+        state.status = 'loading';
+        state.error = '';
+      })
+      .addCase(attemptTokenLogin.rejected, (state, { payload }) => {
         state.status = 'failed';
         state.error = payload.message;
       });
