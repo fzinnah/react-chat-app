@@ -3,12 +3,14 @@ import io from 'socket.io-client';
 import { useSelector } from 'react-redux';
 import { selectAuth } from './slices/authSlice';
 import './Chat.css';
+// import chatSlice from './slices/chatSlice';
 
 const socket = io('http://localhost:3001');
 
 const Chat = () => {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
+  // const [chats, setChats] = useSelector(chatSlice);
 
   const { userAuth } = useSelector(selectAuth);
 
@@ -35,6 +37,7 @@ const Chat = () => {
 
   return (
     <div className="chat-container">
+      <ul className="chat-list"></ul>
       <ul className="message-list">
         {messages.map((msg, idx) => (
           <li key={idx} className="message">
